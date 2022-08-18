@@ -29,6 +29,6 @@ public class GameManagerAttachment : MonoBehaviour
     private void OnDestroy()
     {
         //‚±‚±ˆê’U‰¼‚Å
-        GameManager.Instance.Destroy();
+        //GameManager.Instance.Destroy();
     }
 }

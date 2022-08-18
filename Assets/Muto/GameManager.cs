@@ -32,6 +32,8 @@ public class GameManager
     /// </summary>
     Score _gameScore;
 
+    public Score GameData => _gameScore;
+
     public void Setup(GameManagerAttachment attachment)
     {
         //アタッチメント側のCallbackに登録
