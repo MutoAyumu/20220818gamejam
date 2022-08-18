@@ -35,7 +35,7 @@ public class GirlsStatusManager : MonoBehaviour
     /// <summary>animation triger ‚ÅŒÄ‚Ô</summary>
     public void Destroy()
     {
-        _eg.Test2(transform);
+        _eg.Test2(transform.position);
         Destroy(gameObject);
     }
 
