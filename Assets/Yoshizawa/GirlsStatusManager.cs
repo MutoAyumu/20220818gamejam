@@ -23,7 +23,7 @@ public class GirlsStatusManager : MonoBehaviour
         }
         if(_state == JudgeType.good)
         {
-            GameManager.Instance.AddScore(_score);
+            GameManager.Instance.IncreaseScore(_score);
         }
         else if(_state == JudgeType.bad)
         {

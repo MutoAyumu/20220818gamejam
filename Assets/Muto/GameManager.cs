@@ -62,7 +62,7 @@ public class GameManager
     /// ƒXƒRƒA‰ÁZ‚ÌŠÖ”
     /// </summary>
     /// <param name="i"></param>
-    public void AddScore(int i)
+    public void IncreaseScore(int i)
     {
         if(i <= 0)
         {

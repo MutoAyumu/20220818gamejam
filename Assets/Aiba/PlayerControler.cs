@@ -13,12 +13,6 @@ public class PlayerControler : MonoBehaviour
     [Header("判定するレイヤー")]
     [Tooltip("判定するレイヤー")] [SerializeField] LayerMask _okLayer;
 
-    [Header("止めていいナンパのタグの名前")]
-    [Tooltip("止めていいナンパのタグの名前")] [SerializeField] string _okTatchTagName = "";
-
-    [Header("何もしなくていいナンパのタグの名前")]
-    [Tooltip("何もしなくていいナンパのタグの名前")] [SerializeField] string _noTatchTagName = "";
-
     [Header("アクションを起こすキー")]
     [Tooltip("アクションを起こすキー")] [SerializeField] string inputKey = "Jump";
 
@@ -61,7 +55,7 @@ public class PlayerControler : MonoBehaviour
     {
         float h = Input.GetAxisRaw("Horizontal");
 
-        Vector2 velo = new Vector2(h * _moveSpeed, 0);
+        Vector2 velo = new Vector2(h * _moveSpeed, _rb.velocity.y);
         _rb.velocity = velo;
        
         if(h!=0)
