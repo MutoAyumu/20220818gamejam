@@ -22,6 +22,7 @@ public class PlayerControler : MonoBehaviour
     [Header("アクションを起こすキー")]
     [Tooltip("アクションを起こすキー")] [SerializeField] string inputKey = "Jump";
 
+    bool _isGameStop = false;
 
     Rigidbody2D _rb;
     Animator _anim;
@@ -30,14 +31,27 @@ public class PlayerControler : MonoBehaviour
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _anim = gameObject.GetComponent<Animator>();
     }
+    private void OnEnable()
+    {
+        GameManager.Instance.OnPause += Pause;
+        GameManager.Instance.OnResume += Resume;
+    }
+    private void OnDisable()
+    {
+        GameManager.Instance.OnPause -= Pause;
+        GameManager.Instance.OnResume -= Resume;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
-        if (Input.GetButtonDown(inputKey))
+        if (!_isGameStop)
         {
-            Judge();
+            Move();
+            if (Input.GetButtonDown(inputKey))
+            {
+                Judge();
+            }
         }
     }
 
@@ -49,6 +63,11 @@ public class PlayerControler : MonoBehaviour
 
         Vector2 velo = new Vector2(h * _moveSpeed, 0);
         _rb.velocity = velo;
+       
+        if(h!=0)
+        {
+        transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 
     void Judge()
@@ -57,6 +76,9 @@ public class PlayerControler : MonoBehaviour
 
         if (hit)
         {
+            var e = hit.collider.GetComponent<GirlsStatusManager>();
+            e.Judge();
+
             //if (hit.collider.gameObject.tag == _okTatchTagName)
             //{
 
@@ -69,4 +91,31 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
+    void Pause()
+    {
+        //Pauseでさせる処理   
+        _isGameStop = true;
+        if (_anim)
+        {
+            _anim.speed = 0;
+        }
+
+    }
+
+    void Resume()
+    {
+        //Resumeでさせる処理   
+        _isGameStop = false;
+        if (_anim)
+        {
+            _anim.speed = 1;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        var p = this.transform.position;
+        Gizmos.DrawLine(p, new Vector2(p.x, p.y + _rayDistance));
+    }
 }
