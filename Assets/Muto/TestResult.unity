@@ -564,6 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 646869706}
   _missText: {fileID: 1055868366}
+  _nextButton: {fileID: 473335461}
 --- !u!114 &702852665
 MonoBehaviour:
   m_ObjectHideFlags: 0

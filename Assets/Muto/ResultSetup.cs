@@ -9,6 +9,8 @@ public class ResultSetup : MonoBehaviour
     [SerializeField] Text _scoreText;
     [SerializeField] Text _missText;
 
+    [SerializeField] Button _nextButton;
+
     private void Awake()
     {
         //ここテスト
@@ -23,6 +25,12 @@ public class ResultSetup : MonoBehaviour
         {
             Debug.LogError("Textがセットされていません");
         }
+        if(!_nextButton)
+        {
+            Debug.LogError("Buttonがセットされていません");
+        }
+
+        _nextButton.gameObject.SetActive(false);
 
         var data = GameManager.Instance.GameData;
         SetText(_scoreText, data._score);
@@ -45,6 +53,33 @@ public class ResultSetup : MonoBehaviour
         DOTween.Sequence()
             .Append(text.DOFade(1, 1f).SetEase(Ease.Linear))
             .Append(DOVirtual.Int(0, i, 0.5f, value => text.text = value.ToString("00000"))
-                .SetDelay(0.5f));
+                .SetDelay(0.5f))
+            .OnComplete(() =>
+            {
+                SetButton();
+            });
+    }
+    void SetButton()
+    {
+        _nextButton.gameObject.SetActive(true);
+
+        var image = _nextButton.gameObject.GetComponent<Image>();
+        var text = _nextButton.transform.GetChild(0).GetComponent<Text>();
+
+        var c1 = text.color;
+        c1.a = 0;
+        text.color = c1;
+        
+        var c2 = image.color;
+        c2.a = 0;
+        image.color = c2;
+
+        text.DOFade(1, 1f).SetEase(Ease.Linear);
+        image.DOFade(1, 1f).SetEase(Ease.Linear);
+
+        var rect = _nextButton.GetComponent<RectTransform>();
+        rect.DOAnchorPos(new Vector2(0, -50f), 1f)
+            .SetEase(Ease.InQuart)
+            .SetRelative(true);
     }
 }

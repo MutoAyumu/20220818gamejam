@@ -11,6 +11,8 @@ public class EnemGenerator : MonoBehaviour
     [SerializeField] float _timeLimit = 2f;
     float _timer = 0f;
     List<Transform> _posList = new List<Transform>();
+
+    bool _isPause;
     void Start()
     {
         foreach(var t in _spawnPos)
@@ -20,6 +22,17 @@ public class EnemGenerator : MonoBehaviour
         }
 
         Test();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.OnPause += Pause;
+        GameManager.Instance.OnResume += Resume;
+    }
+    private void OnDisable()
+    {
+        GameManager.Instance.OnPause -= Pause;
+        GameManager.Instance.OnResume -= Resume;
     }
 
     void Test()
@@ -58,29 +71,24 @@ public class EnemGenerator : MonoBehaviour
         t.position = p;
         _posList.Add(t);
     }
-    //void Update()
-    //{
-    //    if (_canEnemy)
-    //    {
-    //        StartCoroutine(WomanInterval());
-    //    }
-    //}
-    //IEnumerator WomanInterval()
-    //{
-    //    yield return new WaitForSeconds(3f);
 
-    //}
-    void Set()
-    {
-
-    }
     private void Update()
     {
+        if (_isPause) return;
+
         _timer += Time.deltaTime;
         if(_timer >= _timeLimit)
         {
             _timer = 0;
             Test();
         }
+    }
+    void Pause()
+    {
+        _isPause = true;
+    }
+    void Resume()
+    {
+        _isPause = false;
     }
 }

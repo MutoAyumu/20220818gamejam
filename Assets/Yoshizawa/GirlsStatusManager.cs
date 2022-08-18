@@ -9,10 +9,38 @@ public class GirlsStatusManager : MonoBehaviour
     EnemGenerator _eg;
     Animator _anim;
     bool _isJudge;
+    bool _isPause;
+
+    float _timer;
+    [SerializeField] float _timeLimit = 2f;
 
     private void Awake()
     {
         _anim = GetComponent<Animator>();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.OnPause += Pause;
+        GameManager.Instance.OnResume += Resume;
+    }
+    private void OnDisable()
+    {
+        GameManager.Instance.OnPause -= Pause;
+        GameManager.Instance.OnResume -= Resume;
+    }
+
+    private void Update()
+    {
+        if (_isPause || _isJudge) return;
+
+        _timer += Time.deltaTime;
+
+        if(_timer >= _timeLimit)
+        {
+            _isJudge = true;
+            _anim.SetTrigger("Judge");
+        }    
     }
 
     public void Judge()
@@ -45,6 +73,16 @@ public class GirlsStatusManager : MonoBehaviour
     {
         _eg.Test2(transform.position);
         Destroy(gameObject);
+    }
+
+    void Pause()
+    {
+        _isPause = true;
+        //Animation‚ª‚ ‚ê‚ÎŽ~‚ß‚é
+    }
+    void Resume()
+    {
+        _isPause = false;
     }
 
     enum JudgeType
