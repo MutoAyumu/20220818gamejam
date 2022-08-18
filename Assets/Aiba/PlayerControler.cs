@@ -66,19 +66,26 @@ public class PlayerControler : MonoBehaviour
        
         if(h!=0)
         {
-        transform.localScale = new Vector3(1, 1, 1);
+        transform.localScale = new Vector3(h, 1, 1);
+        _anim.SetBool("Run", true);
         }
+        else
+        {
+            _anim.SetBool("Run", false);
+        }
+
     }
 
     void Judge()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, _rayDistance, _okLayer);
+       
 
         if (hit)
         {
             var e = hit.collider.GetComponent<GirlsStatusManager>();
             e.Judge();
-
+             Debug.Log("a");
             //if (hit.collider.gameObject.tag == _okTatchTagName)
             //{
 
