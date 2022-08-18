@@ -66,8 +66,14 @@ public class PlayerControler : MonoBehaviour
        
         if(h!=0)
         {
-        transform.localScale = new Vector3(1, 1, 1);
+        transform.localScale = new Vector3(h, 1, 1);
+        _anim.SetBool("Run", true);
         }
+        else
+        {
+            _anim.SetBool("Run", false);
+        }
+
     }
 
     void Judge()
