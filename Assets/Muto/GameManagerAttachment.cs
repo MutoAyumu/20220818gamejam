@@ -7,6 +7,8 @@ public class GameManagerAttachment : MonoBehaviour
     public delegate void MonoEvent();
     MonoEvent _onUpdateCallback;
 
+    float _time = 0;
+
     private void Awake()
     {
         GameManager.Instance.Setup(this);
