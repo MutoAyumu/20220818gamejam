@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   _score: 1
+  _timeLimit: 3
 --- !u!95 &-4635518078547730871
 Animator:
   serializedVersion: 4

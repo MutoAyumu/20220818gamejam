@@ -32,6 +32,8 @@ public class GameManager
     /// </summary>
     Score _gameScore;
 
+    public Score GameData => _gameScore;
+
     public void Setup(GameManagerAttachment attachment)
     {
         //アタッチメント側のCallbackに登録
@@ -62,7 +64,7 @@ public class GameManager
     /// スコア加算の関数
     /// </summary>
     /// <param name="i"></param>
-    public void AddScore(int i)
+    public void IncreaseScore(int i)
     {
         if(i <= 0)
         {

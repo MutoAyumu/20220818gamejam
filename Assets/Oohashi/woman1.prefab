@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   _score: 1
+  _timeLimit: 1
 --- !u!61 &5243973907031221315
 BoxCollider2D:
   m_ObjectHideFlags: 0
