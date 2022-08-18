@@ -7,8 +7,9 @@ public class EnemGenerator : MonoBehaviour
     public bool _canEnemy = false;
 
     [SerializeField] Transform[] _spawnPos = default;
-    [SerializeField] GameObject[] _testO;
-
+    [SerializeField] GirlsStatusManager[] _testO;
+    [SerializeField] float _timeLimit = 2f;
+    float _timer = 0f;
     List<Transform> _posList = new List<Transform>();
     void Start()
     {
@@ -31,6 +32,7 @@ public class EnemGenerator : MonoBehaviour
 
             var t = _posList[r];
             var o = Instantiate(_testO[count]);
+            o.Set(this);
             o.transform.position = t.position;
             _posList.Remove(t); //íœ
             count++;
@@ -50,8 +52,10 @@ public class EnemGenerator : MonoBehaviour
     /// “G‚ª€‚ñ‚¾‚ÉŒÄ‚ñ‚Å‚à‚ç‚¤
     /// </summary>
     /// <param name="t"></param>
-    public void Test2(Transform t)
+    public void Test2(Vector2 p)
     {
+        var t = this.transform;
+        t.position = p;
         _posList.Add(t);
     }
     //void Update()
@@ -69,5 +73,14 @@ public class EnemGenerator : MonoBehaviour
     void Set()
     {
 
+    }
+    private void Update()
+    {
+        _timer += Time.deltaTime;
+        if(_timer >= _timeLimit)
+        {
+            _timer = 0;
+            Test();
+        }
     }
 }
