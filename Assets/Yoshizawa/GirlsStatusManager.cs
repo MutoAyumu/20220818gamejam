@@ -7,7 +7,13 @@ public class GirlsStatusManager : MonoBehaviour
     [SerializeField]JudgeType _state;
     [SerializeField] int _score = 0;
     EnemGenerator _eg;
+    Animator _anim;
     bool _isJudge;
+
+    private void Awake()
+    {
+        _anim = GetComponent<Animator>();
+    }
 
     public void Judge()
     {
@@ -25,6 +31,8 @@ public class GirlsStatusManager : MonoBehaviour
         }
 
         _isJudge = true;
+
+        _anim.SetTrigger("Judge");
     }
 
     public void Set(EnemGenerator eg)
