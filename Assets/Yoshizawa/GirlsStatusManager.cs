@@ -4,21 +4,40 @@ using UnityEngine;
 
 public class GirlsStatusManager : MonoBehaviour
 {
-    [SerializeField]JudgeType state;
+    [SerializeField]JudgeType _state;
     [SerializeField] int _score = 0;
+    EnemGenerator _eg;
+    bool _isJudge;
 
     public void Judge()
     {
-        if(state == JudgeType.good)
+        if(_isJudge)
+        {
+            return;
+        }
+        if(_state == JudgeType.good)
         {
             GameManager.Instance.AddScore(_score);
         }
-        else if(state == JudgeType.bad)
+        else if(_state == JudgeType.bad)
         {
             GameManager.Instance.DecreaseScore(_score);
         }
+
+        _isJudge = true;
     }
-       
+
+    public void Set(EnemGenerator eg)
+    {
+        _eg = eg;
+    }
+
+    /// <summary>animation triger ‚ÅŒÄ‚Ô</summary>
+    public void Destroy()
+    {
+        _eg.Test2(transform);
+        Destroy(gameObject);
+    }
 
     enum JudgeType
     {
