@@ -57,6 +57,48 @@ public class GameManager
             }
         }
     }
+
+    /// <summary>
+    /// スコア加算の関数
+    /// </summary>
+    /// <param name="i"></param>
+    public void AddScore(int i)
+    {
+        if(i <= 0)
+        {
+            return;
+        }
+
+        _gameScore._score += i;
+
+        Debug.Log($"スコアを加算しました : Score [{_gameScore._score}]");
+    }
+
+    /// <summary>
+    /// スコア減算の関数m
+    /// </summary>
+    /// <param name="i"></param>
+    public void DecreaseScore(int i)
+    {
+        if(i >= 0)
+        {
+            return;
+        }
+
+        if (_gameScore._score > 0)
+        {
+            _gameScore._score += i;
+
+            if(_gameScore._score < 0)
+            {
+                _gameScore._score = 0;
+            }
+        }
+        _gameScore._miss += 1;
+
+        Debug.Log($"スコアを減算しました : Score [{_gameScore._score}] Miss [{_gameScore._miss}]");
+    }
+
     void Pause()
     {
         _isPause = true;
@@ -68,6 +110,9 @@ public class GameManager
         Debug.Log("Resume");
     }
 
+    /// <summary>
+    /// ゲームデータの初期化
+    /// </summary>
     public void Destroy()
     {
         //スコアを初期化
