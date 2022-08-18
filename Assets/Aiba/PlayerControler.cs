@@ -79,12 +79,13 @@ public class PlayerControler : MonoBehaviour
     void Judge()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, _rayDistance, _okLayer);
+       
 
         if (hit)
         {
             var e = hit.collider.GetComponent<GirlsStatusManager>();
             e.Judge();
-
+             Debug.Log("a");
             //if (hit.collider.gameObject.tag == _okTatchTagName)
             //{
 
