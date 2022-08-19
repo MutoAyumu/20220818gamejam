@@ -16,14 +16,26 @@ public class PlayerControler : MonoBehaviour
     [Header("アクションを起こすキー")]
     [Tooltip("アクションを起こすキー")] [SerializeField] string inputKey = "Jump";
 
+    [Header("SEの配列")]
+    [Tooltip("SEの配列")] [SerializeField] AudioClip[] _clips;
+
+    [Header("2つ目のAudioSource")]
+    [Tooltip("2つ目のAudioSource")] [SerializeField] AudioSource _audio2;
+
+    [Header("3つ目のAudioSource")]
+    [Tooltip("3つ目のAudioSource")] [SerializeField] AudioSource _audio3;
+
     bool _isGameStop = false;
+    bool _isHit = false;
 
     Rigidbody2D _rb;
     Animator _anim;
+    AudioSource _audio;
     void Start()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _anim = gameObject.GetComponent<Animator>();
+        _audio = gameObject.GetComponent<AudioSource>();
     }
     private void OnEnable()
     {
@@ -42,8 +54,15 @@ public class PlayerControler : MonoBehaviour
         if (!_isGameStop)
         {
             Move();
-            if (Input.GetButtonDown(inputKey))
+            if (Input.GetButtonDown(inputKey) && !_isHit)
             {
+                int _randomAttack = Random.Range(1, 4);
+                _anim.Play($"attack{_randomAttack}");
+                int _randomAudio = Random.Range(0, _clips.Length);
+                _audio.PlayOneShot(_clips[_randomAudio]);
+                _audio3.Play();
+                _isHit = true;
+                StartCoroutine(HitInterval());
                 Judge();
             }
         }
@@ -57,17 +76,15 @@ public class PlayerControler : MonoBehaviour
 
         Vector2 velo = new Vector2(h * _moveSpeed, _rb.velocity.y);
         _rb.velocity = velo;
-       
-        if(h!=0)
+        _anim.SetFloat("Run", h);
+        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
         {
-        transform.localScale = new Vector3(h, 1, 1);
-        _anim.SetBool("Run", true);
+            _audio2.Play();
         }
-        else
+        else if(Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
-            _anim.SetBool("Run", false);
+            _audio2.Stop();
         }
-
     }
 
     void Judge()
@@ -77,9 +94,10 @@ public class PlayerControler : MonoBehaviour
 
         if (hit)
         {
+
             var e = hit.collider.GetComponent<GirlsStatusManager>();
             e.Judge();
-             Debug.Log("a");
+            
             //if (hit.collider.gameObject.tag == _okTatchTagName)
             //{
 
@@ -91,6 +109,11 @@ public class PlayerControler : MonoBehaviour
             //}
         }
     }
+    IEnumerator HitInterval()
+    {
+        yield return new WaitForSeconds(1f);
+        _isHit = false;
+    }
 
     void Pause()
     {
@@ -100,7 +123,6 @@ public class PlayerControler : MonoBehaviour
         {
             _anim.speed = 0;
         }
-
     }
 
     void Resume()
