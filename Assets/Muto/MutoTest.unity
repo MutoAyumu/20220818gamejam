@@ -1856,6 +1856,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16
   inputKey: Jump
+  _clips: []
+  _audio2: {fileID: 0}
+  _audio3: {fileID: 0}
 --- !u!50 &1914954831
 Rigidbody2D:
   serializedVersion: 4
