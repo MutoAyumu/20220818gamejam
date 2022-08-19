@@ -73,7 +73,7 @@ public class GameManager
         {
             _timer.Value -= Time.deltaTime;
 
-            if(_timer.Value <= 0)
+            if(_timer.Value < 0)
             {
                 OnGameOver.Invoke();
                 Debug.Log("ƒQ[ƒ€I—¹");

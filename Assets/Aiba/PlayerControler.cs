@@ -51,7 +51,7 @@ public class PlayerControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_isGameStop)
+        if (!_isGameStop && !GameManager.Instance._isGameStart)
         {
             Move();
             if (Input.GetButtonDown(inputKey) && !_isHit)

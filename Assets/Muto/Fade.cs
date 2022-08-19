@@ -12,4 +12,10 @@ public class Fade
                     .SetDelay(delay)
                     .SetEase(ease);
     }
+    public Tween FadeOut(Image image, float speed, float delay, Ease ease)
+    {
+        return DOVirtual.Float(0f, 1f, speed, value => image.fillAmount = value)
+            .SetDelay(delay)
+            .SetEase(ease);
+    }
 }

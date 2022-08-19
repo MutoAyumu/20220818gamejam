@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class GameManagerAttachment : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class GameManagerAttachment : MonoBehaviour
     [SerializeField] Text _countDownText;
 
     [SerializeField] float _gameTimeLimit = 60;
+
+    [SerializeField] string _resultSceneName = "Result";
+
     public float GameTime => _gameTimeLimit;
 
     private void Awake()
@@ -34,6 +38,16 @@ public class GameManagerAttachment : MonoBehaviour
                 _countDownText.enabled = false;
             });
     }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.OnGameOver += SceneLoad;
+    }
+    private void OnDisable()
+    {
+        GameManager.Instance.OnGameOver -= SceneLoad;
+    }
+
     /// <summary>
     /// GameManagerのUpdate処理をコールバックに追加m
     /// </summary>
@@ -46,6 +60,21 @@ public class GameManagerAttachment : MonoBehaviour
     private void Update()
     {
         _onUpdateCallback.Invoke();
+    }
+
+    void SceneLoad()
+    {
+        var fade = new Fade();
+
+        _fadePanel.transform.localScale = new Vector3(1f, 1f, 1f);
+        _fadePanel.raycastTarget = true;
+
+        var tween = fade.FadeOut(_fadePanel, _fadeSpeed, 1, Ease.Linear);
+
+        tween.OnComplete(() =>
+        {
+            SceneManager.LoadScene(_resultSceneName);
+        });
     }
     private void OnDestroy()
     {
