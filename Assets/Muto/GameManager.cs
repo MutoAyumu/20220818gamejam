@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
+using UniRx;
 
 public class GameManager
 {
@@ -33,6 +35,10 @@ public class GameManager
     /// </summary>
     Score _gameScore;
 
+    FloatReactiveProperty _timer;
+
+    public IReactiveProperty<float> GameTimer => _timer;
+
     public Score GameData => _gameScore;
 
     public void Setup(GameManagerAttachment attachment)
@@ -43,6 +49,9 @@ public class GameManager
         //PauseèàóùÇìoò^
         OnPause += Pause;
         OnResume += Resume;
+
+        _timer = new FloatReactiveProperty(0);
+        _timer.Value = attachment.GameTime;
 
         Reset();
     }
@@ -57,6 +66,17 @@ public class GameManager
             else Å@Å@//Pause
             {
                 OnPause.Invoke();
+            }
+        }
+
+        if(!_isGameStart)
+        {
+            _timer.Value -= Time.deltaTime;
+
+            if(_timer.Value <= 0)
+            {
+                OnGameOver.Invoke();
+                Debug.Log("ÉQÅ[ÉÄèIóπ");
             }
         }
     }

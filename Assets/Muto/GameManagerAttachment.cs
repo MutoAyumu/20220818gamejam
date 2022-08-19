@@ -14,7 +14,8 @@ public class GameManagerAttachment : MonoBehaviour
 
     [SerializeField] Text _countDownText;
 
-    float _time = 0;
+    [SerializeField] float _gameTimeLimit = 60;
+    public float GameTime => _gameTimeLimit;
 
     private void Awake()
     {
