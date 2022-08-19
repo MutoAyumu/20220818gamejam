@@ -56,9 +56,11 @@ public class ResultSetup : MonoBehaviour
 
         _fadePanel.fillAmount = 1;
 
-        DOVirtual.Float(1f, 0f, _fadeSpeed, value => _fadePanel.fillAmount = value)
-            .SetDelay(1)
-            .SetEase(Ease.Linear)
+        var fade = new Fade();
+
+        var tween = fade.FadeIn(_fadePanel, _fadeSpeed, 1, Ease.Linear);
+
+            tween
             .OnComplete(() =>
             {
                 SetText(_scoreText, data._score);
