@@ -16,7 +16,7 @@ public class ResultSetup : MonoBehaviour
 
     private void Awake()
     {
-        if(GameManager.Instance.GameData == null)
+        if(GameManager.Instance.Score == null || GameManager.Instance.MissCount == null)
         {
             GameManager.Instance.Reset();
         }
@@ -44,8 +44,6 @@ public class ResultSetup : MonoBehaviour
 
         _nextButton.gameObject.SetActive(false);
 
-        var data = GameManager.Instance.GameData;
-
         var c1 = _scoreText.color;
         c1.a = 0;
         _scoreText.color = c1;
@@ -64,8 +62,8 @@ public class ResultSetup : MonoBehaviour
             .OnComplete(() =>
             {
                 _fadePanel.raycastTarget = false;
-                SetText(_scoreText, data._score);
-                SetText(_missText, data._miss);
+                SetText(_scoreText, GameManager.Instance.Score.Value);
+                SetText(_missText, GameManager.Instance.MissCount.Value);
             });
     }
     void SetText(Text text, int i)

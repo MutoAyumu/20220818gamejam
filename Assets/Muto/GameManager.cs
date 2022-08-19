@@ -33,13 +33,15 @@ public class GameManager
     /// <summary>
     /// ゲームのスコア
     /// </summary>
-    Score _gameScore;
+    IntReactiveProperty _gameScore;
+    IntReactiveProperty _missCount;
 
     FloatReactiveProperty _timer;
 
     public IReactiveProperty<float> GameTimer => _timer;
 
-    public Score GameData => _gameScore;
+    public IReactiveProperty<int> Score => _gameScore;
+    public IReactiveProperty<int> MissCount => _missCount;
 
     public void Setup(GameManagerAttachment attachment)
     {
@@ -76,6 +78,7 @@ public class GameManager
             if(_timer.Value < 0)
             {
                 OnGameOver.Invoke();
+                _isGameStart = true;
                 Debug.Log("ゲーム終了");
             }
         }
@@ -92,9 +95,9 @@ public class GameManager
             return;
         }
 
-        _gameScore._score += i;
+        _gameScore.Value += i;
 
-        Debug.Log($"スコアを加算しました : Score [{_gameScore._score}]");
+        Debug.Log($"スコアを加算しました : Score [{_gameScore.Value}]");
     }
 
     /// <summary>
@@ -108,18 +111,18 @@ public class GameManager
             return;
         }
 
-        if (_gameScore._score > 0)
+        if (_gameScore.Value > 0)
         {
-            _gameScore._score += i;
+            _gameScore.Value += i;
 
-            if(_gameScore._score < 0)
+            if(_gameScore.Value < 0)
             {
-                _gameScore._score = 0;
+                _gameScore.Value = 0;
             }
         }
-        _gameScore._miss += 1;
+        _missCount.Value += 1;
 
-        Debug.Log($"スコアを減算しました : Score [{_gameScore._score}] Miss [{_gameScore._miss}]");
+        Debug.Log($"スコアを減算しました : Score [{_gameScore.Value}] Miss [{_missCount.Value}]");
     }
 
     void Pause()
@@ -139,22 +142,10 @@ public class GameManager
     public void Reset()
     {
         //スコアを初期化
+        _missCount = null;
         _gameScore = null;
-        _gameScore = new Score();
-    }
-}
 
-[System.Serializable]
-public class Score
-{
-    //ここにスコアで使いたい変数を定義
-    public int _score;
-    public int _miss;
-
-    //Scoreクラスのコンストラクタ
-    public Score()
-    {
-        _score = 0;
-        _miss = 0;
+        _missCount = new IntReactiveProperty(0);
+        _gameScore = new IntReactiveProperty(0);
     }
 }
