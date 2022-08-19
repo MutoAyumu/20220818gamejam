@@ -27,6 +27,13 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField] EffectDummyControl effectdummycontrol;
 
+
+    [SerializeField] GameObject _effect1;
+    [SerializeField] GameObject _effect2;
+    [SerializeField] GameObject _effectPos1;
+    [SerializeField] GameObject _effectPos2;
+
+
     bool _isGameStop = false;
     bool _isHit = false;
 
@@ -58,6 +65,7 @@ public class PlayerControler : MonoBehaviour
             Move();
             if (Input.GetButtonDown(inputKey) && !_isHit)
             {
+                float h = Input.GetAxisRaw("Horizontal");
                 int _randomAttack = Random.Range(1, 4);
                 _anim.Play($"attack{_randomAttack}");
                 int _randomAudio = Random.Range(0, _clips.Length);
@@ -66,6 +74,26 @@ public class PlayerControler : MonoBehaviour
                 _isHit = true;
                 StartCoroutine(HitInterval());
                 Judge();
+
+                if(h>0)
+                {
+                    var go = Instantiate(_effect1);
+                    go.transform.position = _effectPos1.transform.position;
+                    go.transform.SetParent(_effectPos1.transform);
+                }
+                else if(h<0)
+                {
+                    var go = Instantiate(_effect2);
+                    go.transform.position = _effectPos2.transform.position;
+                    go.transform.SetParent(_effectPos2.transform);
+                }
+                else
+                {
+                    var go = Instantiate(_effect1);
+                    go.transform.position = _effectPos1.transform.position;
+                    go.transform.SetParent(_effectPos1.transform);
+                }
+                
             }
         }
     }
