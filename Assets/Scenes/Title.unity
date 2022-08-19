@@ -214,7 +214,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 130378006}
         m_TargetAssemblyTypeName: SceneLord, Assembly-CSharp
-        m_MethodName: LordScene
+        m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
