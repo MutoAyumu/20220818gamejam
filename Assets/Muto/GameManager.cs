@@ -26,6 +26,7 @@ public class GameManager
     public event Action OnGameOver;
 
     bool _isPause;
+    public bool _isGameStart = true;
 
     /// <summary>
     /// ゲームのスコア
