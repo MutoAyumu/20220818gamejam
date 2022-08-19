@@ -10,6 +10,7 @@ public class ResultSetup : MonoBehaviour
     [SerializeField] Text _missText;
 
     [SerializeField] Button _nextButton;
+    [SerializeField] Button _titleButton;
 
     [SerializeField] Image _fadePanel;
     [SerializeField]float _fadeSpeed = 1f; 
@@ -40,6 +41,7 @@ public class ResultSetup : MonoBehaviour
         }
 
         _nextButton.gameObject.SetActive(false);
+        _titleButton.gameObject.SetActive(false);
 
         var c1 = _scoreText.color;
         c1.a = 0;
@@ -83,15 +85,16 @@ public class ResultSetup : MonoBehaviour
                 .SetDelay(0.5f))
             .OnComplete(() =>
             {
-                SetButton();
+                SetButton(_nextButton);
+                SetButton(_titleButton);
             });
     }
-    void SetButton()
+    void SetButton(Button button)
     {
-        _nextButton.gameObject.SetActive(true);
+        button.gameObject.SetActive(true);
 
-        var image = _nextButton.gameObject.GetComponent<Image>();
-        var text = _nextButton.transform.GetChild(0).GetComponent<Text>();
+        var image = button.gameObject.GetComponent<Image>();
+        var text = button.transform.GetChild(0).GetComponent<Text>();
 
         var c1 = text.color;
         c1.a = 0;
@@ -104,7 +107,7 @@ public class ResultSetup : MonoBehaviour
         text.DOFade(1, 1f).SetEase(Ease.Linear);
         image.DOFade(1, 1f).SetEase(Ease.Linear);
 
-        var rect = _nextButton.GetComponent<RectTransform>();
+        var rect = button.GetComponent<RectTransform>();
         rect.DOAnchorPos(new Vector2(0, -50f), 1f)
             .SetEase(Ease.InQuart)
             .SetRelative(true);

@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using UniRx;
+using DG.Tweening;
 
 public class GameManager
 {
@@ -95,7 +96,9 @@ public class GameManager
             return;
         }
 
-        _gameScore.Value += i;
+        DOVirtual.Int(_gameScore.Value, _gameScore.Value + i, 0.2f, value => _gameScore.Value = value);
+
+        //_gameScore.Value += i;
 
         Debug.Log($"ƒXƒRƒA‚ð‰ÁŽZ‚µ‚Ü‚µ‚½ : Score [{_gameScore.Value}]");
     }
