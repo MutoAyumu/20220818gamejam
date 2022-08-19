@@ -63,6 +63,7 @@ public class ResultSetup : MonoBehaviour
             tween
             .OnComplete(() =>
             {
+                _fadePanel.raycastTarget = false;
                 SetText(_scoreText, data._score);
                 SetText(_missText, data._miss);
             });
