@@ -672,6 +672,8 @@ MonoBehaviour:
   _fadePanel: {fileID: 599369062}
   _fadeSpeed: 1
   _countDownText: {fileID: 116874776}
+  _gameTimeLimit: 60
+  _resultSceneName: Result
 --- !u!4 &627519233
 Transform:
   m_ObjectHideFlags: 0
@@ -749,7 +751,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -99
-  m_Sprite: {fileID: 21300000, guid: c9dc3c917c9326741b02926db4df6bf3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f9f7331081e35f648ad463527287ca47, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

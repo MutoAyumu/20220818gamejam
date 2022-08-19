@@ -25,6 +25,8 @@ public class PlayerControler : MonoBehaviour
     [Header("3‚Â–Ú‚ÌAudioSource")]
     [Tooltip("3‚Â–Ú‚ÌAudioSource")] [SerializeField] AudioSource _audio3;
 
+    [SerializeField] EffectDummyControl effectdummycontrol;
+
     bool _isGameStop = false;
     bool _isHit = false;
 
@@ -94,7 +96,7 @@ public class PlayerControler : MonoBehaviour
 
         if (hit)
         {
-
+            effectdummycontrol.Effect();
             var e = hit.collider.GetComponent<GirlsStatusManager>();
             e.Judge();
             
