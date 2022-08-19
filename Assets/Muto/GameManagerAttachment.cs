@@ -66,7 +66,6 @@ public class GameManagerAttachment : MonoBehaviour
     {
         var fade = new Fade();
 
-        _fadePanel.transform.localScale = new Vector3(1f, 1f, 1f);
         _fadePanel.raycastTarget = true;
 
         var tween = fade.FadeOut(_fadePanel, _fadeSpeed, 1, Ease.Linear);
