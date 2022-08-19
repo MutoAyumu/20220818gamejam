@@ -212,6 +212,18 @@ MonoBehaviour:
           m_StringArgument: "\u6C7A\u5B9A\u30DC\u30BF\u30F3\u3092\u62BC\u305930"
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 130378006}
+        m_TargetAssemblyTypeName: SceneLord, Assembly-CSharp
+        m_MethodName: LordScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MutoTest 1
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &130378002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad4bd60db712ad41a8b7e98d81029fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lordScene: 
+  _lordScene: MutoTest 1
   _time: 2.04
 --- !u!95 &130378007
 Animator:
@@ -466,8 +478,8 @@ RectTransform:
   m_Children:
   - {fileID: 982376662}
   - {fileID: 1517929563}
-  - {fileID: 1257670467}
   - {fileID: 1887240991}
+  - {fileID: 1257670467}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -893,7 +905,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 380404606}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1163,7 +1175,7 @@ Transform:
   - {fileID: 1504943958}
   - {fileID: 130378004}
   m_Father: {fileID: 380404606}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1887240992
 Animator:
