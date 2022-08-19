@@ -6,9 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: f7df6e2d2180e0e4bb28a07d180b98e3
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 51d2e905dc4aca541a0e7ce7ec035563
+  - enabled: 1
+    path: Assets/Scenes/Result.unity
+    guid: b4b3d5e288ce32d4fb59a2254b44719b
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Yoshizawa/MutoTest 1.unity
     guid: ff939de42df7bb841a03980d748d5715
   m_configObjects: {}
