@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneLord : MonoBehaviour
 {
-    [SerializeField] string _lordScene;
+    [SerializeField] string _loadScene;
     [SerializeField] float _time;
 
-    public void LordScene(string cor_name)
+    public void LoadScene(string cor_name)
     {
-        StartCoroutine(LordInterval(cor_name));
+        StartCoroutine(LoadInterval(cor_name));
     }
 
-    IEnumerator LordInterval(string sceneName)
+    IEnumerator LoadInterval(string sceneName)
     {
         yield return new WaitForSeconds(_time);
         SceneManager.LoadScene(sceneName);
