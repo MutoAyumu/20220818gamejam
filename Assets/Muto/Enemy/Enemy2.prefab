@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3689784258359800625}
   - component: {fileID: 1283670433597305538}
   - component: {fileID: -45103007766861343}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   _score: 100
-  _timeLimit: 1.5
+  _timeLimit: 3
 --- !u!95 &-45103007766861343
 Animator:
   serializedVersion: 4
