@@ -7,6 +7,7 @@ public class GirlsStatusManager : MonoBehaviour
     [SerializeField]JudgeType _state;
     [SerializeField] int _score = 0;
     EnemGenerator _eg;
+    Transform _spawnPos;
     Animator _anim;
     bool _isJudge;
     bool _isPause;
@@ -63,15 +64,16 @@ public class GirlsStatusManager : MonoBehaviour
         _anim.SetTrigger("Judge");
     }
 
-    public void Set(EnemGenerator eg)
+    public void Set(EnemGenerator eg, Transform t)
     {
         _eg = eg;
+        _spawnPos = t;
     }
 
     /// <summary>animation triger ‚ÅŒÄ‚Ô</summary>
     public void Destroy()
     {
-        _eg.Test2(transform.position);
+        _eg.Test2(_spawnPos);
         Destroy(gameObject);
     }
 
