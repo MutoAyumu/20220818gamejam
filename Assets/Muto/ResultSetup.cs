@@ -11,8 +11,16 @@ public class ResultSetup : MonoBehaviour
 
     [SerializeField] Button _nextButton;
 
+    [SerializeField] Image _fadePanel;
+    [SerializeField]float _fadeSpeed = 1f; 
+
     private void Awake()
     {
+        if(GameManager.Instance.GameData == null)
+        {
+            GameManager.Instance.Reset();
+        }
+
         //ここテスト
         GameManager.Instance.IncreaseScore(100);
         GameManager.Instance.DecreaseScore(10);
@@ -29,12 +37,33 @@ public class ResultSetup : MonoBehaviour
         {
             Debug.LogError("Buttonがセットされていません");
         }
+        if (!_fadePanel)
+        {
+            Debug.Log("FadePanelがセットされていません");
+        }
 
         _nextButton.gameObject.SetActive(false);
 
         var data = GameManager.Instance.GameData;
-        SetText(_scoreText, data._score);
-        SetText(_missText, data._miss);
+
+        var c1 = _scoreText.color;
+        c1.a = 0;
+        _scoreText.color = c1;
+
+        var c2 = _missText.color;
+        c2.a = 0;
+        _missText.color = c2;
+
+        _fadePanel.fillAmount = 1;
+
+        DOVirtual.Float(1f, 0f, _fadeSpeed, value => _fadePanel.fillAmount = value)
+            .SetDelay(1)
+            .SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                SetText(_scoreText, data._score);
+                SetText(_missText, data._miss);
+            });
     }
     void SetText(Text text, int i)
     {

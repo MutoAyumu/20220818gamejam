@@ -43,7 +43,7 @@ public class GameManager
         OnPause += Pause;
         OnResume += Resume;
 
-        _gameScore = new Score();
+        Reset();
     }
     void OnUpdate()
     {
@@ -115,10 +115,11 @@ public class GameManager
     /// <summary>
     /// ゲームデータの初期化
     /// </summary>
-    public void Destroy()
+    public void Reset()
     {
         //スコアを初期化
         _gameScore = null;
+        _gameScore = new Score();
     }
 }
 
