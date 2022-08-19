@@ -2195,9 +2195,6 @@ MonoBehaviour:
   - {fileID: 7487996983145976529, guid: 01bdb613dcb172d42a9cd7714f57f4c8, type: 3}
   - {fileID: 7487996983145976529, guid: 913564792c07a1542b51632c88cb2a11, type: 3}
   - {fileID: 7487996983145976529, guid: ea7bfc8519d2095489b4bd2a38b9f84f, type: 3}
-  - {fileID: 7487996983145976529, guid: b2dfd182eab8c304cb2ac105b5f3be1c, type: 3}
-  - {fileID: 3694390251307467366, guid: 22878730c61c51646801fdab18488afc, type: 3}
-  - {fileID: 3694390251307467366, guid: 14e16a050e0695c43b9c84e0f493e9bd, type: 3}
   _timeLimit: 1
 --- !u!4 &1718775194
 Transform:
@@ -2384,7 +2381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ff3d551a7c2bf45836cf1780b88432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 3.16
+  _moveSpeed: 5
   _rayDistance: 3
   _okLayer:
     serializedVersion: 2
@@ -2714,7 +2711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad4bd60db712ad41a8b7e98d81029fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lordScene: 
+  _loadScene: 
   _time: 0
 --- !u!114 &2079722395
 MonoBehaviour:
