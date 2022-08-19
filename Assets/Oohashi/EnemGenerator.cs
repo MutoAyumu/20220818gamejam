@@ -21,7 +21,7 @@ public class EnemGenerator : MonoBehaviour
             _posList.Add(t);
         }
 
-        Test();
+        Test(_posList.Count);
     }
 
     private void OnEnable()
@@ -35,40 +35,41 @@ public class EnemGenerator : MonoBehaviour
         GameManager.Instance.OnResume -= Resume;
     }
 
-    void Test()
+    void Test(int n)
     {
         var count = 0;
 
-        while (_posList.Count != 0)
+        for(int i = 0; i < n; i++)
         {
-            var r = Random.Range(0, _posList.Count - 1);
+            if (count == _posList.Count)
+            {
+                break;
+            }
 
-            var t = _posList[r];
-            var o = Instantiate(_testO[count]);
-            o.Set(this);
+            if (_posList.Count == 0)
+            {
+                break;
+            }
+
+            var r1 = Random.Range(0, _posList.Count - 1);
+
+            var t = _posList[r1];
+
+            var r2 = Random.Range(0, _testO.Length);
+
+            var o = Instantiate(_testO[r2]);
+            o.Set(this, t);
             o.transform.position = t.position;
             _posList.Remove(t); //íœ
             count++;
-
-            if(count == _posList.Count)
-            {
-                break;
-            }
-
-            if(_posList.Count == 0)
-            {
-                break;
-            }
         }
     }
     /// <summary>
     /// “G‚ªŽ€‚ñ‚¾Žž‚ÉŒÄ‚ñ‚Å‚à‚ç‚¤
     /// </summary>
     /// <param name="t"></param>
-    public void Test2(Vector2 p)
+    public void Test2(Transform t)
     {
-        var t = this.transform;
-        t.position = p;
         _posList.Add(t);
     }
 
@@ -80,7 +81,7 @@ public class EnemGenerator : MonoBehaviour
         if(_timer >= _timeLimit)
         {
             _timer = 0;
-            Test();
+            Test(1);
         }
     }
     void Pause()

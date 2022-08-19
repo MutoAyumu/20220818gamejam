@@ -906,7 +906,7 @@ MonoBehaviour:
   - {fileID: 3401572389661595867, guid: f560735857f4ae4458489be149e959c2, type: 3}
   - {fileID: -1029833306517994188, guid: 05e89684a99eea240a2a2c934adda401, type: 3}
   - {fileID: 6878929298879154724, guid: 801284ad7a75ce045a778ef860202954, type: 3}
-  _timeLimit: 2
+  _timeLimit: 1
 --- !u!4 &1718775194
 Transform:
   m_ObjectHideFlags: 0
