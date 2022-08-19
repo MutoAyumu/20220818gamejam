@@ -21,9 +21,6 @@ public class ResultSetup : MonoBehaviour
             GameManager.Instance.Reset();
         }
 
-        //‚±‚±ƒeƒXƒg
-        GameManager.Instance.IncreaseScore(100);
-        GameManager.Instance.DecreaseScore(10);
         Setup();
     }
 

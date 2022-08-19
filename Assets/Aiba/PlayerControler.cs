@@ -96,7 +96,7 @@ public class PlayerControler : MonoBehaviour
 
         if (hit)
         {
-            effectdummycontrol.Effect();
+            //effectdummycontrol.Effect();
             var e = hit.collider.GetComponent<GirlsStatusManager>();
             e.Judge();
             
